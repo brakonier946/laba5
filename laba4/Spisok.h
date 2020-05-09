@@ -75,20 +75,22 @@ public:
         } while (it != end());
     }
 
-    void sort() {
-        for (int i = 0; i < size() - 1; i++) {
+     void sort() {
+        auto it1 = begin();
+        do{
             Spisok<T>::Iterator e = end();
             auto it2 = begin();
             do {
                 auto kk = it2 + 1;
-                if (it2 > kk) {
+                if (*it2 > *kk) {
                     T d = (*it2).data;
                     (*it2).data = (*kk).data;
                     (*kk).data = d;
                 }
                 it2++;
             } while (it2 != e);
-        }
+            it1++;
+        } while (it1 != end());
     }
 
     int size() { return countElements; }
@@ -132,14 +134,6 @@ public:
             for (int i = 0; i < n; i++)
                 it++;
             return it;
-        }
-
-        bool operator > (Iterator& rhs) {
-            return cur->data > (*rhs).data;
-        }
-
-        bool operator < (Iterator& rhs) {
-            return cur < &(*rhs);
         }
     };
 #pragma endregion
